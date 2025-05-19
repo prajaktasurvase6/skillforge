@@ -12,6 +12,7 @@ const Navbar = () => {
         <ul className="flex space-x-6">
           <li><Link to="/" className="text-gray-700 hover:text-blue-600">Home</Link></li>
           <li><Link to="/dashboard" className="text-gray-700 hover:text-blue-600">Dashboard</Link></li>
+          <li><Link to="/learning-paths" className="text-gray-700 hover:text-blue-600">Learning Paths</Link></li>
           <li><Link to="/profile" className="text-gray-700 hover:text-blue-600">Profile</Link></li>
           <li><Link to="/blog" className="text-gray-700 hover:text-blue-600">Blog</Link></li>
           <li><Link to="/login" className="text-gray-700 hover:text-blue-600">Login</Link></li>

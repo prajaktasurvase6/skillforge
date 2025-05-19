@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Register from './components/Register';
+import LearningPaths from './components/LearningPaths';
+import LearningPathDetail from './components/LearningPathDetail';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/learning-paths" element={<LearningPaths />} />
+            <Route path="/learning-path/:pathId" element={<LearningPathDetail />} />
           </Routes>
         </main>
         <Footer />

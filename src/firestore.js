@@ -1,7 +1,16 @@
 // src/firestore.js
 import { db } from './firebase';
-import { collection, doc, setDoc, getDoc, addDoc, updateDoc, arrayUnion, Timestamp } from 'firebase/firestore';
-
+import {
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  addDoc,
+  getDocs,
+  updateDoc,
+  arrayUnion,
+  Timestamp
+} from 'firebase/firestore';
 // Add a new user to the database
 export const addUserToFirestore = async (userId, email, name) => {
   try {
@@ -55,7 +64,7 @@ export const addLearningPath = async (title, description, skills, duration, cour
 // Fetch all learning paths
 export const getLearningPaths = async () => {
   try {
-    const querySnapshot = await getDoc(collection(db, "learning_paths"));
+    const querySnapshot = await getDocs(collection(db, "learning_paths"));
     const paths = [];
     querySnapshot.forEach((doc) => {
       paths.push({ id: doc.id, ...doc.data() });
