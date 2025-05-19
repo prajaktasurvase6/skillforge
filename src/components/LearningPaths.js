@@ -1,4 +1,3 @@
-// src/components/LearningPaths.js
 import React, { useEffect, useState } from 'react';
 import { getLearningPaths } from '../firestore';
 import { Link, useNavigate } from 'react-router-dom';
@@ -27,32 +26,42 @@ const LearningPaths = () => {
   };
 
   return (
-    <div className="container mx-auto py-20">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">Available Learning Paths</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="container mx-auto py-20 px-4 md:px-8">
+      <h2 className="text-4xl font-extrabold text-gray-900 mb-10 text-center">Available Learning Paths</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {paths.length > 0 ? (
           paths.map((path) => (
-            <div key={path.id} className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">{path.title}</h3>
-              <p className="text-gray-600 mb-4">{path.description}</p>
-              <ul className="list-disc list-inside mb-4">
+            <div key={path.id} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+              <h3 className="text-2xl font-semibold text-gray-800 mb-4">{path.title}</h3>
+              <p className="text-gray-700 mb-4 leading-relaxed">{path.description}</p>
+              <ul className="list-disc list-inside mb-6 text-gray-600">
                 {path.skills.map((skill, index) => (
                   <li key={index}>{skill}</li>
                 ))}
               </ul>
-              <Link to={`/learning-path/${path.id}`} className="bg-blue-600 text-white py-2 px-4 rounded-md block text-center mb-2">
-                View Details
-              </Link>
-              <button
-                onClick={() => handleEnroll(path.id)}
-                className="bg-green-600 text-white py-2 px-4 rounded-md w-full"
-              >
-                Enroll Now
-              </button>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => handleEnroll(path.id)}
+                  className="bg-green-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-green-700 transition-all duration-200 ease-in-out shadow-md hover:shadow-lg">
+                  Enroll Now
+                </button>
+                
+                <Link 
+                  to={`/learning-path/${path.id}`} 
+                  className="bg-blue-600 text-white py-2 px-6 rounded-lg font-semibold text-center hover:bg-blue-700 transition-all duration-200 ease-in-out shadow-md hover:shadow-lg">
+                  View Details
+                </Link>
+                
+                <Link 
+                  to={`/progress/${path.id}`} 
+                  className="bg-gray-800 text-white py-2 px-6 rounded-lg font-semibold text-center hover:bg-gray-900 transition-all duration-200 ease-in-out shadow-md hover:shadow-lg">
+                  View Progress
+                </Link>
+              </div>
             </div>
           ))
         ) : (
-          <p className="text-gray-600">No learning paths available yet.</p>
+          <p className="text-gray-600 text-center">No learning paths available yet.</p>
         )}
       </div>
     </div>

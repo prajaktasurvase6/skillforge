@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import LearningPaths from './components/LearningPaths';
 import LearningPathDetail from './components/LearningPathDetail';
+import ProgressTracker from './components/ProgressTracker';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/learning-paths" element={<LearningPaths />} />
             <Route path="/learning-path/:pathId" element={<LearningPathDetail />} />
+            <Route path="/progress/:pathId" element={<ProgressTracker />} />
+            
+            
           </Routes>
         </main>
         <Footer />

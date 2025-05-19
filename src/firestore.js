@@ -11,6 +11,7 @@ import {
   arrayUnion,
   Timestamp
 } from 'firebase/firestore';
+ 
 // Add a new user to the database
 export const addUserToFirestore = async (userId, email, name) => {
   try {
@@ -76,17 +77,20 @@ export const getLearningPaths = async () => {
   }
 };
 
-// Update user progress
-export const updateUserProgress = async (userId, pathId, skill) => {
+// Fetch a single learning path
+export const getLearningPath = async (pathId) => {
   try {
-    const docRef = doc(db, "user_progress", `${userId}_${pathId}`);
-    await updateDoc(docRef, {
-      completed: arrayUnion(skill),
-      updatedAt: Timestamp.now()
-    });
-    console.log("User progress updated");
+    const docRef = doc(db, "learning_paths", pathId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data();
+    } else {
+      console.log("No such path!");
+      return null;
+    }
   } catch (error) {
-    console.error("Error updating user progress:", error);
+    console.error("Error getting learning path:", error);
+    return null;
   }
 };
 
@@ -116,7 +120,54 @@ export const addSkillToUser = async (userId, skill) => {
   }
 };
 
-// Fetch user progress
+
+// Enroll a user in a learning path
+export const enrollUserInPath = async (userId, pathId) => {
+  try {
+    await setDoc(doc(db, "user_progress", `${userId}_${pathId}`), {
+      userId,
+      pathId,
+      completed: [],
+      startedAt: Timestamp.now(),
+      updatedAt: Timestamp.now()
+    });
+    console.log("User enrolled in path");
+  } catch (error) {
+    console.error("Error enrolling user in path:", error);
+  }
+};
+
+// // Get user progress for a learning path
+// export const getUserProgress = async (userId, pathId) => {
+//   try {
+//     const docRef = doc(db, "user_progress", `${userId}_${pathId}`);
+//     const docSnap = await getDoc(docRef);
+//     if (docSnap.exists()) {
+//       return docSnap.data();
+//     } else {
+//       console.log("No progress found for this path");
+//       return null;
+//     }
+//   } catch (error) {
+//     console.error("Error getting user progress:", error);
+//     return null;
+//   }
+// };
+
+// Update user progress
+export const updateUserProgress = async (userId, pathId, skill) => {
+  try {
+    const docRef = doc(db, "user_progress", `${userId}_${pathId}`);
+    await updateDoc(docRef, {
+      completed: arrayUnion(skill),
+      updatedAt: Timestamp.now()
+    });
+    console.log("User progress updated");
+  } catch (error) {
+    console.error("Error updating user progress:", error);
+  }
+};
+// Get user progress for a specific learning path
 export const getUserProgress = async (userId, pathId) => {
   try {
     const docRef = doc(db, "user_progress", `${userId}_${pathId}`);
