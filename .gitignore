@@ -21,3 +21,23 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# Node Modules
+node_modules/
+ 
+# Build Files
+build/
+dist/
+
+# Firebase Keys
+src/firebase.js
+
+# Tailwind Output
+src/output.css
+
+# Environment Variables
+.env
+
+# Mac System Files
+.DS_Store
