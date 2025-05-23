@@ -14,8 +14,15 @@ const Recommendation = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          prompt: `Suggest a personalized 3-month learning path for someone who wants to ${goal}. Include key skills and recommended course topics.`
-        })
+            
+        //   prompt: ` Suggest a personalized learning path for someone who wants to ${goal}.
+        // Only Include list of key skills and recommended course topics for goal: ${goal}.`
+       prompt : `Provide a focused list of key skills and recommended course topics specifically aligned with the following goal: ${goal}.
+Only include:
+	1.	A concise list of essential skills
+	2.	Relevant course topics or categories to learn those skills
+Do not include explanations, job roles, or unrelated content, expressions, starting sentences. Give just direct skills and courses`
+       })
       });
 
       console.log('Response status:', res.status);
