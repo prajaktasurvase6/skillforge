@@ -10,6 +10,9 @@ import Register from './components/Register';
 import LearningPaths from './components/LearningPaths';
 import LearningPathDetail from './components/LearningPathDetail';
 import ProgressTracker from './components/ProgressTracker';
+import Blog from './components/Blog/Blog';
+import Profile from './components/Profile/Profile';
+import Recommendation from './components/AI/Recommendation';
 
 function App() {
   return (
@@ -25,8 +28,10 @@ function App() {
             <Route path="/learning-paths" element={<LearningPaths />} />
             <Route path="/learning-path/:pathId" element={<LearningPathDetail />} />
             <Route path="/progress/:pathId" element={<ProgressTracker />} />
-            
-            
+            <Route path="/blogs" element={<Blog />} />
+           <Route path="/profile" element={<Profile />} />
+           <Route path="/recommendation" element={<Recommendation />} />
+                       
           </Routes>
         </main>
         <Footer />

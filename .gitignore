@@ -41,3 +41,5 @@ src/output.css
 
 # Mac System Files
 .DS_Store
+
+*.json
