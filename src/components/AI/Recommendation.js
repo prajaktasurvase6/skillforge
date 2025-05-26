@@ -10,7 +10,8 @@ const Recommendation = () => {
     setResponse('');
 
     try {
-      const res = await fetch('http://localhost:5050/api/gemini', {
+    //   const res = await fetch('http://localhost:5050/api/gemini', {
+        const res = await fetch('https://skillforge-api-600189343170.us-central1.run.app/api/gemini', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
